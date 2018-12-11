@@ -1,13 +1,13 @@
 
 class ClassicStorage{
   static prefix = 'classic'
-  constructor(epsoide){
-    this.key = ClassicStorage.prefix + '-' + epsoide
+  constructor(episode){
+    this.key = ClassicStorage.prefix + '-' + episode
   }
-  get(epsoide){
+  get(episode){
     return wx.getStorageSync(this.key)
   }
-  set(epsoide, classic){
+  set(episode, classic){
     wx.setStorageSync(this.key, classic)
   }
 }

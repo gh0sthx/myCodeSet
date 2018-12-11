@@ -12,7 +12,6 @@ Component({
       type:Boolean,
       value:false,
       observer:function(){
-        // console.log('111111')
         // this.setData({
         //   latest:this.properties.latest
         // })

@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "navi-cmp": "/components/navi/navi",
-    "epsoide-cmp": "/components/epsoide/epsoide",
+    "episode-cmp": "/components/episode/episode",
     "like-cmp": "/components/like/index",
     "movie-cmp":"/components/classic/movie/movie",
     "music-cmp": "/components/classic/music/music",

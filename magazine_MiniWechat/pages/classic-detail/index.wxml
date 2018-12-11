@@ -1,6 +1,6 @@
 <view class="container">
   <view class="header">
-    <epsoide-cmp class="epsoide" index="{{classic.index}}" />
+    <episode-cmp class="episode" index="{{classic.index}}" />
      <view class="like-container">
       <like-cmp bind:like="onLike" class="like" like="{{like}}" count="{{count}}" />
       <img-btn-cmp class="share-btn" open-type="share">

@@ -73,7 +73,7 @@ Component({
         }
       }
     },
-
+    // 音乐控制面板
     _monitorSwitch: function() {
       mMgr.onPlay(() => {
         this._recoverPlaying()

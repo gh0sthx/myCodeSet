@@ -1,4 +1,4 @@
-<!--components/epsoide/epsoide-cmp.wxml-->
+<!--components/episode/episode-cmp.wxml-->
 <view class="container">
   <view class="index-container">
     <text class="plain">No.</text>

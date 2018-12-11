@@ -20,15 +20,6 @@ class ClassicModel extends HTTP{
         }
     })
   }
-
-  getPrevious(index, sCallback){
-    this._getClassic(index,'previous',sCallback)
-  }
-
-  getNext(index, sCallback) {
-    this._getClassic(index, 'next', sCallback)
-  }
-
   getById(cid, type, success){
     let params = {
       url:'classic/'+type+'/' + cid,
@@ -39,9 +30,9 @@ class ClassicModel extends HTTP{
 
   isLatest(index){
     let key = this._fullKey('latest-' + index)
-    let latestEpsoide = wx.getStorageSync(key)
-    if(latestEpsoide){
-      if (index == latestEpsoide){
+    let latestepisode = wx.getStorageSync(key)
+    if(latestepisode){
+      if (index == latestepisode){
         return true
       }
     }
@@ -63,13 +54,13 @@ class ClassicModel extends HTTP{
     this.request(params)
   }
 
-  _getClassic(index, next_or_previous, sCallback){
+  getClassic(index, next_or_previous, sCallback){
     let key = next_or_previous == 'next' ? this._fullKey(index + 1):
       this._fullKey(index-1)
     let classic = wx.getStorageSync(key)
     if (!classic) {
       let params = {
-        url: 'classic/' + index + '/' + next_or_previous,
+        url: `classic/${index}/${next_or_previous}`,
         success:(data)=>{
           let key = this._fullKey(data.index)
           wx.setStorageSync(key, data)
@@ -91,7 +82,7 @@ class ClassicModel extends HTTP{
     wx.setStorageSync(key, index)
   }
 
-  _getLatestEpsoide(index){
+  _getLatestepisode(index){
     let key = this._fullKey(index)
     return wx.getStorageSync(key)
   }

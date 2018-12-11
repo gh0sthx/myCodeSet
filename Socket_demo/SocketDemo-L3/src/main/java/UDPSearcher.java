@@ -43,6 +43,10 @@ public class UDPSearcher {
         return listener;
     }
 
+    /**
+     * 发送广播
+     * @throws IOException
+     */
     private static void sendBroadcast() throws IOException {
         System.out.println("UDPSearcher sendBroadcast started.");
 

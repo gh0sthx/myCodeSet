@@ -34,9 +34,10 @@ Page({
   // },
 
   getMyBookCount() {
-    bookModel.getMyBookCount(data => {
+    const myBooksCount = bookModel.getMyBookCount()
+    myBooksCount.then(res => {
       this.setData({
-        myBooksCount: data.count
+        myBooksCount: res.count
       })
     })
   },

@@ -29,26 +29,28 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
+    const bid = options.bid
+    const detail = bookModel.getDetail(bid)
+    const comments = bookModel.getComments(bid)
+    const likeStatus = bookModel.getLikeStatus(bid)
 
-    let bid = options.bid
-    bookModel.getDetail(bid, (data) => {
+    detail.then(res => {
       this.setData({
-        book: data
+        book: res
       })
     })
 
-    commentModel.getComment(bid, (data) => {
+    comments.then(res => {
       this.setData({
-        noComment: data.comments == false ? true : false,
-        comments: data.comments
+        comments: res.comments
       })
     })
 
-    bookModel.getLikeStatus(bid, (data) => {
+    likeStatus.then(res => {
       this.setData({
-        like: data.like_status,
-        count: data.fav_nums
+        likeStatus: res.like_status,
+        likeCount: res.fav_nums
       })
     })
   },
@@ -59,22 +61,20 @@ Page({
     })
   },
 
-  onPost: function(event) {
-    let comment = event.detail.value || event.detail.text
-    if (!comment) {
-      return
-    }
-    if (comment.length>12){
+  onPost(event) {
+    const comment = event.detail.text || event.detail.value
+    if (comment.lenght > 12) {
       wx.showToast({
-        title: '短评最多12个字',
-        icon:'none'
+        title: '短评最多12字',
+        icon: 'none'
       })
       return
     }
-    commentModel.post(this.data.book.id, comment, (data) => {
+
+    bookModel.postComment(this.data.book.id, comment).then(res => {
       wx.showToast({
-        title: '+ 1',
-        icon:"none"
+        title: '+1',
+        icon: 'none'
       })
       this.data.comments.unshift({
         content: comment,
@@ -82,12 +82,9 @@ Page({
       })
       this.setData({
         comments: this.data.comments,
-        noComment:false
+        posting: false,
+        noComment: false
       })
-    })
-
-    this.setData({
-      posting: false
     })
   },
 
@@ -97,8 +94,8 @@ Page({
     })
   },
 
-  onLike: function(event) {
-    let like_or_cancel = event.detail.behavior
+  onLike(event) {
+    const like_or_cancel = event.detail.behavior
     likeModel.like(like_or_cancel, this.data.book.id, 400)
   },
 

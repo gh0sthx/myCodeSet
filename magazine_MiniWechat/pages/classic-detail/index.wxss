@@ -47,7 +47,7 @@
    bottom: 40rpx; 
 }
 
-.epsoide{
+.episode{
    margin-left:10px; 
    margin-top:7px;
 }

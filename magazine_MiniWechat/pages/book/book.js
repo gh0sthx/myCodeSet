@@ -19,13 +19,14 @@ Page({
     })
   },
 
-  /**
+   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    bookModel.getHotList((data)=>{
+    const hotList = bookModel.getHotList()
+    hotList.then(res => {
       this.setData({
-        books:data
+        books: res
       })
     })
   },

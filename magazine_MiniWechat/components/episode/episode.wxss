@@ -1,4 +1,4 @@
-/* components/epsoide/epsoide-cmp.wxss */
+/* components/episode/episode-cmp.wxss */
 .index{
   font-size:30px;
   /* line-height:20px;  */

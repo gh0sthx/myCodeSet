@@ -1,4 +1,4 @@
-// components/epsoide/epsoide-cmp.js
+// components/episode/episode-cmp.js
 Component({
   /**
    * 组件的属性列表
@@ -39,7 +39,7 @@ Component({
       year:year
     })
   },
-
+ 
   /**
    * 组件的方法列表
    */
