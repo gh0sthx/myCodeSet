@@ -10,7 +10,7 @@
     <text class="headline">短评</text>
     <text class="shadow" wx:if="{{noComment}}">还没有短评</text>
     <view class="comment-container">
-      <block wx:for="{{util.limit(comments,15)}}">
+      <block wx:for="{{util.limit(comments,15)}}" wx:key="content">
         <tag-cmp class="tag" text="{{item.content}}">
           <text class="num" slot="after">{{'+' + item.nums}}</text>
         </tag-cmp>
@@ -64,7 +64,7 @@
   </view>
   <view class="comment-container">
     <block wx:for="{{util.limit(comments, 3)}}">
-      <tag-cmp bind:tapping="onPost" tag-class="tag" text="{{item.content}}">
+      <tag-cmp bind:tapping="onPost" tag-class="{{tool.highlight(index)}}" text="{{item.content}}">
         <text class="num" slot="after">{{'+' + item.nums}}</text>
       </tag-cmp>
     </block>
@@ -74,7 +74,7 @@
 </view>
 
 
-
+<!-- 也可以定义在外部，只不过需要指定src -->
 <wxs module="util">
   var limit = function(array, length) {
     return array.slice(0, length)
@@ -92,3 +92,18 @@
     format:format
   }
 </wxs>
+
+<wxs module="tool">
+  var highlight = function(index){
+    if(index==0){
+      return 'ex-tag1'
+    }
+    if(index==1){
+      return 'ex-tag2'
+    }
+    return ''
+  }
+  module.exports = {
+    highlight: highlight,
+  }
+</wxs> 
